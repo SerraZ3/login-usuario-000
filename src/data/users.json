@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "nome": "Joaquim",
+    "sobrenome": "Souza",
+    "apelido": "Joqui",
+    "senha": "123",
+    "email": "joaquim.souza@email.com",
+    "admin": false,
+    "criadoEm": "2021-09-13T00:55:49.130Z",
+    "modificadoEm": "2021-09-30T00:40:53.344Z"
+  },
+  {
+    "id": 2,
+    "nome": "Renata",
+    "sobrenome": "Pereiria",
+    "apelido": "Renatinha",
+    "senha": "123",
+    "email": "renata@email.com",
+    "admin": false,
+    "criadoEm": "2021-09-13T00:55:49.130Z",
+    "modificadoEm": "2021-09-30T00:40:53.344Z"
+  },
+  {
+    "id": 3,
+    "nome": "Roberto",
+    "sobrenome": "Oliveira",
+    "apelido": "Rob",
+    "senha": "123",
+    "email": "roberto@email.com",
+    "admin": false,
+    "criadoEm": "2021-09-13T00:55:49.130Z",
+    "modificadoEm": "2021-09-30T00:40:53.344Z"
+  },
+  {
+    "id": 4,
+    "nome": "Luiz",
+    "sobrenome": "Santiago",
+    "apelido": "Luz",
+    "senha": "123",
+    "email": "luiz@email.com",
+    "admin": false,
+    "criadoEm": "2021-09-13T00:55:49.130Z",
+    "modificadoEm": "2021-09-30T00:40:53.344Z"
+  }
+]

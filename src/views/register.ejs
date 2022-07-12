@@ -1,0 +1,22 @@
+<%- include("./partials/head") %> 
+<%- include("./partials/header") %>
+<main class="form-container">
+  <h1>Registro do usuário</h1>
+  <% if(locals.error){ %>
+    <h2 class="error-alert"><%= error.message %></h2>
+   <% } %>
+  <form action="/register" method="post">
+    <input type="text" name="nome" placeholder="Nome" />
+    <input type="text" name="sobrenome" placeholder="Sobrenome" />
+    <input type="text" name="apelido" placeholder="Apelido" />
+    <input type="text" name="email" placeholder="Email" />
+    <input type="password" name="senha" placeholder="Senha" />
+    <input
+      type="password"
+      name="confirmar_senha"
+      placeholder="Confirma Senha"
+    />
+    <button type="submit">Adicionar</button>
+  </form>
+</main>
+<%- include("./partials/footer") %>
