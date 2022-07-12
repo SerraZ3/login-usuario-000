@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const bcrypt = require("../helpers/bcrypt");
 const indexController = {
   login: (req, res) => {
     res.render("login", {
@@ -7,35 +8,42 @@ const indexController = {
     });
   },
   auth: (req, res) => {
+    const usersJson = fs.readFileSync(
+      path.join(__dirname, "..", "data", "users.json"),
+      "utf-8"
+    );
+
+    let users = JSON.parse(usersJson);
     // LIMPEZA DE COOKIES
-    res.clearCookie("usuario");
+    res.clearCookie("user");
     res.clearCookie("admin");
 
     // CAPTURA DO EMAIL E SENHA ENVIADOS
     const { email, senha } = req.body;
-
+    console.log(req.session.email);
+    console.log(email, senha);
     // BUSCA POR USUÁRIO RELACIONADO AOS DADOS ENVIADOS
-    const usuarioLogado = usuariosPlaceholder.filter((usuario) => {
+    const userLogin = users.find((usuario) => {
       if (usuario.email === email) {
-        if (usuario.senha === senha) {
-          return usuario;
+        if (bcrypt.compareHash(senha, usuario.senha)) {
+          return true;
         }
       }
     });
 
     // CASO NÃO ENCONTREMOS UM USUÁRIO COM ESSES DADOS
-    if (!usuarioLogado.length) {
-      res.render("login", {
-        titulo: "Ops!",
-        subtitulo: "Algo de errado não deu certo...",
-        usuarioLogado: req.cookies.usuario,
-        usuarioAdmin: req.cookies.admin,
+    if (!userLogin) {
+      return res.render("login", {
+        title: "Login",
+        error: {
+          message: "Verifique se o email e a senha correspondem",
+        },
       });
     }
 
     // FILTRAMOS ALGUNS CAMPOS COM O JSON.STRINGIFY (COMO A SENHA)
-    let usuario = JSON.parse(
-      JSON.stringify(usuarioLogado[0], [
+    let user = JSON.parse(
+      JSON.stringify(userLogin, [
         "id",
         "nome",
         "sobrenome",
@@ -46,8 +54,9 @@ const indexController = {
     );
 
     // DEFINIMOS OS COOKIES USUÁRIO (OBJETO) E ADMIN (BOOLEANO)
-    res.cookie("usuario", usuario);
-    res.cookie("admin", `${usuarioLogado[0].admin}`);
+    req.session.email = user.email;
+    res.cookie("user", user);
+    res.cookie("admin", `${userLogin.admin}`);
     res.redirect("/");
   },
   register: (req, res) => {
@@ -73,7 +82,6 @@ const indexController = {
         },
       });
     }
-    console.log(req.body);
     if (
       !nome ||
       !sobrenome ||
@@ -87,8 +95,13 @@ const indexController = {
         error: { message: "Preencha todos os campo" },
       });
     }
-    let newUser = { nome, sobrenome, apelido, senha, email };
-console.log(newUser);
+    let newUser = {
+      nome,
+      sobrenome,
+      apelido,
+      senha: bcrypt.generateHash(senha),
+      email,
+    };
     let newId = users[users.length - 1].id + 1;
     newUser.criadoEm = new Date();
     newUser.modificadoEm = new Date();
@@ -101,7 +114,13 @@ console.log(newUser);
     );
     res.redirect("/");
   },
-  logout: (req, res) => {},
+  logout: (req, res) => {
+    req.session.destroy();
+    // LIMPEZA DE COOKIES
+    res.clearCookie("user");
+    res.clearCookie("admin");
+    res.redirect("/");
+  },
 };
 
 module.exports = indexController;

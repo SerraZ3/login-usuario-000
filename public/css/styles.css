@@ -77,6 +77,9 @@ a button {
   font-size: 1.5rem;
   color: #c4a621;
 }
+.form-container form  {
+  width: 100%;
+}
 @media only screen and (min-width: 600px) {
   .form-container form  {
     width: 80%;
