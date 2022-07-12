@@ -5,6 +5,8 @@ const indexController = {
   login: (req, res) => {
     res.render("login", {
       title: "Login",
+      user: req.cookies.user,
+      admin: req.cookies.admin
     });
   },
   auth: (req, res) => {

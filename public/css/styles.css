@@ -10,6 +10,9 @@ h1 {
   color: #1048b1;
   margin: 10px 0;
 }
+header form {
+  display: inline;
+}
 header {
   padding: 30px 20px;
 }
@@ -43,7 +46,22 @@ button {
   color: #fff;
   border-radius: 10px;
 }
-
+.btn-logout{
+  border: none;
+  width: auto;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent;
+  color: #3875e6;
+  text-decoration: none;
+  border-radius: 0;
+}
+.btn-logout:hover {
+  color: rgb(85, 72, 202);
+  background-color: transparent;
+}
 button:hover {
   background-color: #03293baa;
 }

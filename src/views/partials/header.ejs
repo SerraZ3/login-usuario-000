@@ -1,5 +1,17 @@
 <header>
   <div>
-    <a href="/">Página Inicial</a> | <a href="/admin">Administrador</a>  | <a href="/login">Login</a>
+    <a href="/">Página Inicial</a>
+    <% if(locals.admin) { %> 
+      | <a href="/admin">Administrador</a> 
+    <% } %>
+    <% if(locals.user) { %> 
+      |
+      <form action="/logout" method="post">
+        <button type="submit" class="btn-logout">Logout</button>
+      </form>
+    <% } else{ %> 
+      | <a href="/login">Login</a> 
+    <% }  %> 
+    
   </div>
 </header>

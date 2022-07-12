@@ -6,7 +6,7 @@
     "apelido": "Joqui",
     "senha": "123",
     "email": "joaquim.souza@email.com",
-    "admin": false,
+    "admin": true,
     "criadoEm": "2021-09-13T00:55:49.130Z",
     "modificadoEm": "2021-09-30T00:40:53.344Z"
   },
@@ -42,5 +42,16 @@
     "admin": false,
     "criadoEm": "2021-09-13T00:55:49.130Z",
     "modificadoEm": "2021-09-30T00:40:53.344Z"
+  },
+  {
+    "nome": "Henrique",
+    "sobrenome": "Serra",
+    "apelido": "SerraZ",
+    "senha": "$2b$10$3WCybE2NkHx2W9eBaDPJ9enRmlmxeKq8Agds3BTbkNikxBS1EQy.i",
+    "email": "serra.henrique3@gmail.com",
+    "criadoEm": "2022-07-12T21:27:28.781Z",
+    "modificadoEm": "2022-07-12T21:27:28.781Z",
+    "admin": true,
+    "id": 5
   }
 ]
